@@ -1,0 +1,30 @@
+:: bat file for windows platform
+@ECHO OFF
+:: [ECHO(] is used for new line char alternate is [ECHO.]
+ECHO(
+::command line argument
+SET arg1=%1
+SET arg2=%2
+shift
+shift
+ECHO arg1 & arg2
+:: [&&]execute a follow-on command after success. 
+g++ -std=c++0x ^
+-I ./poker/header ^
+-iquote ./poker/source ^
+-iquote ./server/header ^
+-iquote ./server/source ^
+-iquote ./meerkat/header ^
+-iquote ./meerkat/source ^
+ main.cpp -o poker && poker.exe
+
+IF %ERRORLEVEL% EQU 0 (
+	COLOR
+	ECHO(
+	ECHO Execution success! 
+	ECHO( 
+) ELSE (
+	COLOR C
+	ECHO ERROR in execution of poker check for errors!
+)
+
